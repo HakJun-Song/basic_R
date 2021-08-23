@@ -1,2 +1,6 @@
 name: "my-website"
-href: Rmarkdown_paper-0720-.html
+navbar:
+  title: "My Website"
+  left:
+    - text: "Home"
+      href: Rmarkdown_paper-0720-.html
