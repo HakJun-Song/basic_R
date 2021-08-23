@@ -3,7 +3,7 @@ navbar:
   title: "My Website"
   left:
     - text: "Home"
-      href: Rmarkdown_paper-0720-.html
+      href: index.html
 output_dir: "."
 output:
   html_document:
