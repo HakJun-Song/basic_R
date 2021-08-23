@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="HakJun Song" />
+
+<meta name="date" content="2021-08-23" />
+
+<title>기초통계</title>
+
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="site_libs/viz-1.8.2/viz.js"></script>
+<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="site_libs/grViz-binding-1.0.6.1/grViz.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-info"></span>
+     
+    About
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    More
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Heading 1</li>
+    <li>
+      <a href="page-a.html">Page A</a>
+    </li>
+    <li>
+      <a href="page-b.html">Page B</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Heading 2</li>
+    <li>
+      <a href="page-c.html">Page C</a>
+    </li>
+    <li>
+      <a href="https://bloodia-book.netlify.com/">Page D</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://example.com">
+    <span class="fa fa-question fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">기초통계</h1>
+<h4 class="author">HakJun Song</h4>
+<h4 class="date">2021-08-23</h4>
+
+</div>
+
+
+<div id="i.-기본셋팅" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade">I. 기본셋팅</h1>
+<div id="i.1.-패키지-설치" class="section level2">
+<h2>I.1. 패키지 설치</h2>
+<p><code>pacman</code>패키지를 이용하여 필요한 패키지 한번에 설치<br />
+<code>if (!require(pacman))~~</code>부분은 <code>pacman</code>패키지가 이미 설치되어 있으면 로드만 설치되어 있지 않다면 인스톨(설치)와 로드를 한번에 실행</p>
+<pre class="r"><code>if (!require(pacman)) {install.packages(&quot;pacman&quot;)
+  library(pacman)}</code></pre>
+<pre><code>## 필요한 패키지를 로딩중입니다: pacman</code></pre>
+<pre class="r"><code>pacman::p_load(&quot;readxl&quot;,&quot;summarytools&quot;,&quot;webr&quot;,&quot;ggplot2&quot;,&quot;curl&quot;,
+               &quot;sjmisc&quot;,&quot;car&quot;,&quot;lawstat&quot;,&quot;DiagrammeR&quot;,&quot;skimr&quot;,
+               &quot;tidyr&quot;,&quot;dplyr&quot;,&quot;broom&quot;,&quot;tidyverse&quot;)</code></pre>
+</div>
+<div id="i.2.-필요함수-설정" class="section level2">
+<h2>I.2. 필요함수 설정</h2>
+<p>필요한 경우 사용자가 원하는 작업을 함수로 설정하여 프로그램(스크립트)내에서 이용할 수 있음<br />
+여기서는 <code>meanFunction</code>함수를 정의 하였음</p>
+<pre class="r"><code>meanFunction &lt;- function(x){return(data.frame(y=round(mean(x),2),
+                                              label=round(mean(x,na.rm=T),2)))}</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="ii.-데이터-로드" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade">II. 데이터 로드</h1>
+<blockquote>
+<p>변수(variable)<br />
+□ 구성개념을 구체적으로 정의하여 측정할 수 있도록 해주는 도구. 값이 부여되는 대상 혹은 기호(값이 꼭 숫자를 의미하는 것은 아님)<br />
+□ 주어진 현상을 설명하기 위해 구체화된 구성개념이 조작적 정의를 통해 측정이 가능한 상태로 된 것을 의미<br />
+□ 즉 구성개념은 직접적으로 측정할 수 없기 때문에 대리적인 방법(proxy)을 통해 변수를 통해 측정함<br />
+⇒ ex) 사람의 지적능력(intelligence)을 측정하기 위해 IQ 점수를 사용하였다면 지적능력이 구성개념, IQ 점수가 변수<br />
+⇒ ex) 소비자 만족도를 측정하기 위해 여러 가지 문항을 사용하였다면 소비자 만족도가 구성개념, 그 문항들이 변수<br />
+□ 구성개념은 이론적 단계를 거쳐 개념화되고, 변수는 실증적인 단계에서 조작화 과정을 거침<br />
+□ 이를 통하여 연구자는 본인의 생각을 이론적·실증적 단계를 통해 구체화를 시키는 것임</p>
+</blockquote>
+<blockquote>
+<p>변수의 종류<br />
+□ 범주형 변수(categorical variable): 특성에 따른 구분을 위해 수치를 부여한 비계량적(nonmetric) 변수 또는 질적변수(qualitative variable)<br />
+□ 양적변수(quantitative variable): 크기나 양을 나타내는 숫자로 표현된 계량변수(metric variable)를 의미하는데 연속변수(continuous variable)와 이산변수(discrete variable)로 구분</p>
+</blockquote>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>변수</th>
+<th>내용</th>
+<th>사례</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>명목변수(Nominal)</td>
+<td>대립되는 범주를 구분한 명명변수, 숫자, 기호, 문자 등으로 표현</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>농촌형과 도시형, 남과 여, 성별, 혈액형, 전화번호 등</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>서열변수(Ordinal)</td>
+<td>순위 서열에 따라 측정대상에 수치를 부여한 순서변수</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>아주 친절, 약간 친절, 보통, 약간 불친절, 아주 불친절</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>등간변수(Interval)</td>
+<td>측정 대상이 갖는 속성의 양적(量的) 정도의 차이에 따라 등간격으로 수치를 부여 측정하는 간격변수</td>
+<td>크기, 높이, 부피, 무게, 온도, 시간 등의 측정단위 사용</td>
+</tr>
+<tr class="even">
+<td>비율변수(Ratio)</td>
+<td>간격척도에 기준점(절대 원점)을 고정시켜 설정하여, 비율계산이 가능하여 수식화가 유리한 변수</td>
+<td>연령, 연봉인상률, 물가지수, 표준화변수</td>
+</tr>
+</tbody>
+</table>
+<div id="ii.1.-인터넷에-있는-데이터-가져오기" class="section level2">
+<h2>II.1. 인터넷에 있는 데이터 가져오기</h2>
+<p><code>read_excel</code>함수를 이용하여 인터셋주소(<code>https://github.com/HakJun-Song/class/blob/master/incheon0427.xlsx?raw=true</code>)에서 데이터를 가져와서 <code>incheon0427</code>데이터셋에 저장</p>
+<pre class="r"><code>### 
+url &lt;- &quot;https://github.com/HakJun-Song/class/blob/master/incheon0427.xlsx?raw=true&quot;
+destfile &lt;- &quot;incheon0427.xlsx&quot;
+curl::curl_download(url, destfile)
+incheon0427 &lt;- read_excel(destfile)</code></pre>
+</div>
+<div id="ii.1.1.변수이름과-크기-확인" class="section level2">
+<h2>II.1.1.변수이름과 크기 확인</h2>
+<pre class="r"><code>names(incheon0427)</code></pre>
+<pre><code>##   [1] &quot;no&quot;     &quot;q1&quot;     &quot;q2_1&quot;   &quot;q3&quot;     &quot;q4&quot;     &quot;q4_4&quot;   &quot;q5_1&quot;   &quot;q6_1&quot;  
+##   [9] &quot;q7&quot;     &quot;q8&quot;     &quot;q9_1&quot;   &quot;q9_2&quot;   &quot;q9_3&quot;   &quot;q9_4&quot;   &quot;q9_5&quot;   &quot;q9_6&quot;  
+##  [17] &quot;q9_7&quot;   &quot;q9_8&quot;   &quot;q9_9&quot;   &quot;q9_9a&quot;  &quot;q10&quot;    &quot;q11&quot;    &quot;q12&quot;    &quot;q13&quot;   
+##  [25] &quot;q14&quot;    &quot;q15&quot;    &quot;q16&quot;    &quot;q17&quot;    &quot;q18&quot;    &quot;q19&quot;    &quot;q20&quot;    &quot;q21&quot;   
+##  [33] &quot;q22&quot;    &quot;q23&quot;    &quot;q24&quot;    &quot;q25&quot;    &quot;q26&quot;    &quot;q27&quot;    &quot;q28&quot;    &quot;q29&quot;   
+##  [41] &quot;q30&quot;    &quot;q31&quot;    &quot;q32&quot;    &quot;q33&quot;    &quot;q34&quot;    &quot;q35&quot;    &quot;q36&quot;    &quot;q37&quot;   
+##  [49] &quot;q38&quot;    &quot;q39&quot;    &quot;q40&quot;    &quot;q41&quot;    &quot;q42&quot;    &quot;q43&quot;    &quot;q44&quot;    &quot;q45&quot;   
+##  [57] &quot;q46&quot;    &quot;q47&quot;    &quot;q48&quot;    &quot;q49&quot;    &quot;q50&quot;    &quot;q51&quot;    &quot;q52&quot;    &quot;q53&quot;   
+##  [65] &quot;q54&quot;    &quot;q55&quot;    &quot;q56&quot;    &quot;q57&quot;    &quot;q58&quot;    &quot;q59&quot;    &quot;q60&quot;    &quot;q61&quot;   
+##  [73] &quot;q62&quot;    &quot;q63&quot;    &quot;q64&quot;    &quot;q65&quot;    &quot;q66&quot;    &quot;q67&quot;    &quot;q68&quot;    &quot;q69&quot;   
+##  [81] &quot;q70&quot;    &quot;q71&quot;    &quot;q72&quot;    &quot;q73&quot;    &quot;q74&quot;    &quot;q75&quot;    &quot;q76&quot;    &quot;q77&quot;   
+##  [89] &quot;q78&quot;    &quot;q79&quot;    &quot;q80&quot;    &quot;q81&quot;    &quot;q82&quot;    &quot;q83&quot;    &quot;q84&quot;    &quot;q85&quot;   
+##  [97] &quot;q85_3&quot;  &quot;q86&quot;    &quot;q87&quot;    &quot;q87_12&quot; &quot;q88&quot;    &quot;q88_1&quot;  &quot;q89&quot;    &quot;q89_1&quot; 
+## [105] &quot;q90_1&quot;</code></pre>
+<pre class="r"><code>dim(incheon0427)</code></pre>
+<pre><code>## [1] 563 105</code></pre>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>변수명</th>
+<th>변수내용</th>
+<th>변수형태</th>
+<th>코딩형태</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Q1</td>
+<td>성별</td>
+<td>질적변수(명목변수), 카테고리 2개</td>
+<td>1:남자,2:여자</td>
+</tr>
+<tr class="even">
+<td>Q3</td>
+<td>연령</td>
+<td>질적변수(명목변수), 카테고리</td>
+<td>5개</td>
+</tr>
+<tr class="odd">
+<td>Q7</td>
+<td>복합리조트 이전에 인지여부</td>
+<td>질적변수(명목변수), 카테고리 2개</td>
+<td>1:예,2:아니오</td>
+</tr>
+<tr class="even">
+<td>Q84</td>
+<td>교육수준</td>
+<td>질적변수(서열변수), 카테고리 4개</td>
+<td>1:고졸이하,2:전문대,3:대학교,4:대학원</td>
+</tr>
+<tr class="odd">
+<td>Q85</td>
+<td>결혼여부</td>
+<td>질적변수(명목변수), 카테고리 3개</td>
+<td>1:미혼,2:기혼,3:기타</td>
+</tr>
+<tr class="even">
+<td>Q86</td>
+<td>소득수준</td>
+<td>질적변수(서열변수), 카테고리 9개</td>
+<td>1:100만원미만,2:100만원대,3:200만원대, 4:300만원대,5:400만원대,6:500만원대, 7:600만원대,8:700만원대, 9:800만원이상</td>
+</tr>
+<tr class="odd">
+<td>Q88_1</td>
+<td>국내카지노방문횟수</td>
+<td>양적변수(비율변수)</td>
+<td>___ 회</td>
+</tr>
+<tr class="even">
+<td>Q89</td>
+<td>해외카지노방문경험</td>
+<td>질적변수(명목변수), 카테고리 2개</td>
+<td>1:있다,2:없다</td>
+</tr>
+<tr class="odd">
+<td>Q10</td>
+<td>긍정적 경제인식1</td>
+<td>지역주민 고용기회가 확대될 것이다</td>
+<td>양적변수(등간변수)</td>
+</tr>
+<tr class="even">
+<td>Q11</td>
+<td>긍정적 경제인식2</td>
+<td>지역주민 소득이 증가할 것이다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>양적변수(등간변수)</td>
+<td>리커트 5점 척도 1(매우그렇지않다)~5(매우그렇다)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Q12</td>
+<td>긍정적 경제인식3</td>
+<td>지역개발 재원이 마련될 것이다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>양적변수(등간변수)</td>
+<td>리커트 5점 척도 1(매우그렇지않다)~5(매우그렇다)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Q23</td>
+<td>긍정적 사회인식1</td>
+<td>지역주민의 위락시설 이용기회가 확대될 것이다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>양적변수(등간변수)</td>
+<td>리커트 5점 척도 1(매우그렇지않다)~5(매우그렇다)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Q24</td>
+<td>긍정적 사회인식2</td>
+<td>지역주민 자부심이 높아질 것이다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>양적변수(등간변수</td>
+<td>리커트 5점 척도 1(매우그렇지않다)~5(매우그렇다)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Q25</td>
+<td>긍정적 사회인식3</td>
+<td>지역개발수단으로서 복합리조트 위상이 증대될 것이다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>양적변수(등간변수)</td>
+<td>리커트 5점 척도 1(매우그렇지않다)~5(매우그렇다)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Q48</td>
+<td>인지1</td>
+<td>영종도 복합리조트 개발은 지역사회를 살기 좋은 곳으로 만들 것이다</td>
+<td>양적변수(등간변수)</td>
+</tr>
+<tr class="odd">
+<td>Q49</td>
+<td>인지2</td>
+<td>영종도 복합리조트의 개발은 지역사회를 위한 올바른 선택이 될 것이다</td>
+<td>양적변수(등간변수)</td>
+</tr>
+<tr class="even">
+<td>Q50</td>
+<td>인지3</td>
+<td>영종도 복합리조트의 개발로 지역의 미래는 밝아질 것이다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>양적변수(등간변수)</td>
+<td>리커트 5점 척도 1(매우그렇지않다)~5(매우그렇다)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Q72</td>
+<td>지지1</td>
+<td>나는 영종도 복합리조트 산업발전을 지지할 것이다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>양적변수(등간변수)</td>
+<td>리커트 5점 척도 1(매우그렇지않다)~5(매우그렇다)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Q73</td>
+<td>지지2</td>
+<td>영종도가 복합리조트산업 지역으로 발전되는 것은 바람직하다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>양적변수(등간변수)</td>
+<td>리커트 5점 척도 1(매우그렇지않다)~5(매우그렇다)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Q74</td>
+<td>지지3</td>
+<td>영종도의 복합리조트산업 개발은 지역발전에 이바지 할 것이다</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>양적변수(등간변수)</td>
+<td>리커트 5점 척도 1(매우그렇지않다)~5(매우그렇다)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Q83</td>
+<td>방문의사</td>
+<td>질적변수(명목변수), 카테고리 2개</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>1:예,2:아니오</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="ii.2.-원하는-변수만-가져와서-원하는-데이터셋-다시-만들기" class="section level2">
+<h2>II.2. 원하는 변수만 가져와서 원하는 데이터셋 다시 만들기</h2>
+<p><code>subset</code>함수를 이용하여 <code>incheon0427</code>데이터에서 <code>q10~q12</code>까지의 변수를 가져와서 이를 <code>target_vars</code>라는 데이터셋에 새로 저장</p>
+<pre class="r"><code>### 
+target_vars = subset(incheon0427,select=c(q10,q11,q12))</code></pre>
+</div>
+<div id="ii.3.-기술통계치-도출" class="section level2">
+<h2>II.3. 기술통계치 도출</h2>
+<p><code>summary</code>함수를 통해 <code>target_vars</code>셋에 대해 기술통계치 도출</p>
+<pre class="r"><code>summary(target_vars) # 주요 기술통계치</code></pre>
+<pre><code>##       q10             q11             q12       
+##  Min.   :1.000   Min.   :1.000   Min.   :1.000  
+##  1st Qu.:3.000   1st Qu.:3.000   1st Qu.:3.000  
+##  Median :4.000   Median :4.000   Median :4.000  
+##  Mean   :3.599   Mean   :3.394   Mean   :3.538  
+##  3rd Qu.:4.000   3rd Qu.:4.000   3rd Qu.:4.000  
+##  Max.   :5.000   Max.   :5.000   Max.   :5.000</code></pre>
+<p>q10의 경우 최소값(Min.)은 1(으)로 도출되었음<br />
+q10의 경우 최소값(Max.)은 5(으)로 도출되었음<br />
+q10의 경우 평균(Median)은 3.599(으)로 도출되었음</p>
+<p><br></p>
+</div>
+</div>
+<div id="iii.-빈도분석" class="section level1 tabset tabset-fade">
+<h1 class="tabset tabset-fade">III. 빈도분석</h1>
+<p><code>subset</code>함수를 이용하여 <code>incheon0427</code>데이터에서 <code>q1,q3,q84</code> 변수들을 가져와서 이를 <code>target_vars_cate</code>라는 데이터셋에 새로 저장</p>
+<pre class="r"><code>target_vars_cate &lt;- subset(incheon0427,select=c(q1,q3,q84))
+#summarytools::freq(target_vars_cate, plain.ascii = FALSE)
+frq(target_vars_cate, out = &quot;v&quot;)</code></pre>
+<pre><code>## Package `sjPlot` needs to be loaded to print HTML tables.</code></pre>
+<pre><code>## 
+## q1 &lt;numeric&gt;
+## # total N=563  valid N=563  mean=1.50  sd=0.50
+## 
+## Value |   N | Raw % | Valid % | Cum. %
+## --------------------------------------
+##     1 | 280 | 49.73 |   49.73 |  49.73
+##     2 | 283 | 50.27 |   50.27 | 100.00
+##  &lt;NA&gt; |   0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;
+## 
+## 
+## q3 &lt;numeric&gt;
+## # total N=563  valid N=563  mean=2.64  sd=1.26
+## 
+## Value |   N | Raw % | Valid % | Cum. %
+## --------------------------------------
+##     1 | 135 | 23.98 |   23.98 |  23.98
+##     2 | 134 | 23.80 |   23.80 |  47.78
+##     3 | 135 | 23.98 |   23.98 |  71.76
+##     4 | 116 | 20.60 |   20.60 |  92.36
+##     5 |  43 |  7.64 |    7.64 | 100.00
+##  &lt;NA&gt; |   0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;
+## 
+## 
+## q84 &lt;numeric&gt;
+## # total N=563  valid N=563  mean=2.51  sd=0.89
+## 
+## Value |   N | Raw % | Valid % | Cum. %
+## --------------------------------------
+##     1 | 112 | 19.89 |   19.89 |  19.89
+##     2 |  91 | 16.16 |   16.16 |  36.06
+##     3 | 320 | 56.84 |   56.84 |  92.90
+##     4 |  40 |  7.10 |    7.10 | 100.00
+##  &lt;NA&gt; |   0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+<p><code>subset</code>함수를 이용하여 <code>target_vars_cate</code> 데이터셋에 대해 빈도분석 실시</p>
+<p>q1의 1에 대한 빈도는 280이고 퍼센트는 49.73%이며 누적 퍼센트는 49.73%로 나타났음<br />
+q1의 2에 대한 빈도는 283이고 퍼센트는 50.27%이며 누적 퍼센트는 100%로 나타났음</p>
+<pre class="r"><code>webr::PieDonut(incheon0427,aes(pies=q1),showPieName=FALSE)</code></pre>
+<pre><code>## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =
+## &quot;none&quot;)` instead.</code></pre>
+<p><img src="Rmarkdown_paper-0720-_files/figure-html/unnamed-chunk-13-1.png" width="960" /> q1변수에 대한 파이그래프 결과는 위와 같음</p>
+<p><br></p>
+</div>
+<div id="iv.-독립표본-t-test" class="section level1">
+<h1>IV. 독립표본 t-test</h1>
+<table>
+<thead>
+<tr class="header">
+<th>분석종류</th>
+<th>내용</th>
+<th>독립변수</th>
+<th>종속변수</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>독립표본 t-test</td>
+<td>독립변수의 카테고리(2개)에 따른 종속변수의 차이 분석 ex) 남, 여</td>
+<td>질적변수 1개(카테고리 2개)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>양적변수</td>
+<td>등분산 가정(Leven)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>대응표본 t-test</td>
+<td>동일변수의 전과 후의 차이분석</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>질적변수(시간전후), 1개 또는 다수</td>
+<td>양적변수</td>
+<td>동일변수에 대한</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>전-후 자료필요</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>q1(<code>성별</code>)에 따른 Q10(<code>긍정적 경제인식1</code>)의 차이가 존재하는지를 독립표본 t-test를 통해 확인</p>
+<div id="iv.1.-그래프로-이해하기" class="section level2">
+<h2>IV.1. 그래프로 이해하기</h2>
+<pre class="r"><code>incheon0427$q1=as.factor(incheon0427$q1)
+ggplot(incheon0427, aes(x = as.factor(q1), y = q10, group = q1)) +
+  geom_boxplot(aes(fill=q1), position = position_dodge(width=0.9)) +
+  xlab(&#39; &#39;) +                    # x축 이름설정
+  ylab(&#39; &#39;) +                    # y축 이름설정
+  scale_fill_brewer(name = &#39; &#39;, palette = &#39;Paired&#39;) +   # 색인이름 설정
+  stat_summary(fun.y = mean, geom=&quot;point&quot;,colour=&quot;darkred&quot;, size=4) +
+  stat_summary(fun.data = meanFunction, geom=&quot;text&quot;, size = 4, vjust=1.3)</code></pre>
+<pre><code>## Warning: `fun.y` is deprecated. Use `fun` instead.</code></pre>
+<p><img src="Rmarkdown_paper-0720-_files/figure-html/unnamed-chunk-14-1.png" width="960" /></p>
+<p>그래프를 통해 그룹간 평균수준을 살펴본 결과 그룹1의 평균은 3.58이고 그룹2의 평균은 3.62나타났음</p>
+</div>
+<div id="iv.2.-추리통계분석으로-이해하기" class="section level2">
+<h2>IV.2. 추리통계분석으로 이해하기</h2>
+<div id="iv.2.1.-등분산-검정" class="section level3">
+<h3>IV.2.1. 등분산 검정</h3>
+<pre class="r"><code>t_test_var_results=levene.test(incheon0427$q10, incheon0427$q1,
+            location = &quot;mean&quot;, correction.method = &quot;zero.correction&quot;)
+t_test_var_results</code></pre>
+<pre><code>## 
+##  Classical Levene&#39;s test based on the absolute deviations from the mean
+##  ( zero.correction not applied because the location is not set to
+##  median )
+## 
+## data:  incheon0427$q10
+## Test Statistic = 5.4084, p-value = 0.0204</code></pre>
+<p>levene의 등분산 검정결과 F-value는 5.408이고 p-value는 0.02(으)로 나타났음(p-value가 0.05보다 크다면 <code>두 그룹간 분산이 동질하다</code>라는 귀무가설 채택인데 0.05보다 작다면 귀무가설 기각으로 모집단에서 <code>두 그룹간 분산이 동질하다고 할 수 없음</code>)</p>
+</div>
+<div id="iv.2.2.-t-test-분석" class="section level3">
+<h3>IV.2.2. t-test 분석</h3>
+<p>t-test 분석(등분산 가정 만족)</p>
+<pre class="r"><code>t_test_var_equal=t.test(incheon0427$q10 ~ incheon0427$q1, var.equal=T)
+t_test_var_equal</code></pre>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  incheon0427$q10 by incheon0427$q1
+## t = -0.58538, df = 561, p-value = 0.5585
+## alternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0
+## 95 percent confidence interval:
+##  -0.17336001  0.09375375
+## sample estimates:
+## mean in group 1 mean in group 2 
+##        3.578571        3.618375</code></pre>
+<p>이때 t-value는 -0.585이고 p-value는 0.559(으)로 나타났음<br />
+이때 p-value가 0.05보다 크다면 모집단에서 <code>두그룹(그룹1, 그룹2)간 비교변수에 대한 평균차이는 0이다</code>라는 귀무가설 채택인데 0.05보다 작다면 귀무가설 기각으로 모집단에서 <code>두그룹(그룹1, 그룹2)간 비교변수에 대한 평균차이는 0이 아니다</code>라고 할 수 있게 됨</p>
+<p>t-test 분석(등분산 가정 불만족)</p>
+<pre class="r"><code>t_test_var_notequal=t.test(incheon0427$q10 ~ incheon0427$q1, var.equal=F)
+t_test_var_notequal</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  incheon0427$q10 by incheon0427$q1
+## t = -0.58499, df = 550.96, p-value = 0.5588
+## alternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0
+## 95 percent confidence interval:
+##  -0.17345399  0.09384773
+## sample estimates:
+## mean in group 1 mean in group 2 
+##        3.578571        3.618375</code></pre>
+<p>이때 t-value는 -0.585이고 p-value는 0.559(으)로 나타났음<br />
+이때 p-value가 0.05보다 크다면 모집단에서 <code>두그룹(그룹1, 그룹2)간 비교변수에 대한 평균차이는 0이다</code>라는 귀무가설 채택인데 0.05보다 작다면 귀무가설 기각으로 모집단에서 <code>두그룹(그룹1, 그룹2)간 비교변수에 대한 평균차이는 0이 아니다</code>라고 할 수 있게 됨</p>
+<pre class="r"><code># # 상관분석 x1, x2 변수할당
+# Dataset$cor1=Dataset$pos_eco; Dataset$cor2=Dataset$percept
+# 그래프로 이해하기
+ggplot(incheon0427, aes(x=q10, y=q23)) +
+  geom_point(size = 3, color = &quot;red&quot;)+ # 포인트색 설정: red(빨강)
+  xlab(&#39; &#39;) +             # x축이름 설정
+  ylab(&#39; &#39;)               # y축이름 설정</code></pre>
+<p><img src="Rmarkdown_paper-0720-_files/figure-html/unnamed-chunk-22-1.png" width="960" /></p>
+<pre class="r"><code># 추리통계학으로 확인하기
+cor.test(incheon0427$q10, incheon0427$q23)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  incheon0427$q10 and incheon0427$q23
+## t = 10.257, df = 561, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.3254315 0.4647534
+## sample estimates:
+##       cor 
+## 0.3973799</code></pre>
+<pre class="r"><code>#### 상관관계 숫자표시
+if (!require(Hmisc)) {install.packages(&quot;Hmisc&quot;)
+  library(Hmisc)}</code></pre>
+<pre><code>## 필요한 패키지를 로딩중입니다: Hmisc</code></pre>
+<pre><code>## 필요한 패키지를 로딩중입니다: lattice</code></pre>
+<pre><code>## 필요한 패키지를 로딩중입니다: survival</code></pre>
+<pre><code>## 필요한 패키지를 로딩중입니다: Formula</code></pre>
+<pre><code>## 
+## 다음의 패키지를 부착합니다: &#39;Hmisc&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     src, summarize</code></pre>
+<pre><code>## The following object is masked from &#39;package:sjmisc&#39;:
+## 
+##     %nin%</code></pre>
+<pre><code>## The following objects are masked from &#39;package:summarytools&#39;:
+## 
+##     label, label&lt;-</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     format.pval, units</code></pre>
+<pre class="r"><code>res2 &lt;- rcorr(as.matrix(target_vars))
+print(res2$r, digits=3)</code></pre>
+<pre><code>##       q10   q11   q12
+## q10 1.000 0.676 0.555
+## q11 0.676 1.000 0.600
+## q12 0.555 0.600 1.000</code></pre>
+<pre class="r"><code>print(res2$P, digits=3)</code></pre>
+<pre><code>##     q10 q11 q12
+## q10  NA   0   0
+## q11   0  NA   0
+## q12   0   0  NA</code></pre>
+<pre class="r"><code>#### 독립변수 kw1,kw2,kw3
+if (!require(stargazer)) {install.packages(&quot;stargazer&quot;)
+  library(stargazer)}</code></pre>
+<pre><code>## 필요한 패키지를 로딩중입니다: stargazer</code></pre>
+<pre><code>## 
+## Please cite as:</code></pre>
+<pre><code>##  Hlavac, Marek (2018). stargazer: Well-Formatted Regression and Summary Statistics Tables.</code></pre>
+<pre><code>##  R package version 5.2.2. https://CRAN.R-project.org/package=stargazer</code></pre>
+<pre class="r"><code>mod&lt;-lm(q48~q10+q23, data=incheon0427)
+summary(mod)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = q48 ~ q10 + q23, data = incheon0427)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.72216 -0.37909  0.04997  0.62091  1.76279 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1.09534    0.14957   7.323 8.47e-13 ***
+## q10          0.34307    0.03877   8.849  &lt; 2e-16 ***
+## q23          0.22787    0.03941   5.782 1.23e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.6799 on 560 degrees of freedom
+## Multiple R-squared:  0.2442, Adjusted R-squared:  0.2415 
+## F-statistic: 90.49 on 2 and 560 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>stargazer(mod, type = &quot;text&quot;, report = &quot;vct*&quot;, star.cutoffs = c(0.05, 0.01, 0.001),
+          column.labels = c(&quot;coef&quot;),
+          single.row = TRUE)</code></pre>
+<pre><code>## 
+## =================================================
+##                          Dependent variable:     
+##                     -----------------------------
+##                                  q48             
+##                                 coef             
+## -------------------------------------------------
+## q10                             0.343            
+##                             t = 8.849***         
+## q23                             0.228            
+##                             t = 5.782***         
+## Constant                        1.095            
+##                             t = 7.323***         
+## -------------------------------------------------
+## Observations                     563             
+## R2                              0.244            
+## Adjusted R2                     0.242            
+## Residual Std. Error       0.680 (df = 560)       
+## F Statistic            90.487*** (df = 2; 560)   
+## =================================================
+## Note:               *p&lt;0.05; **p&lt;0.01; ***p&lt;0.001</code></pre>
+<pre class="r"><code>grViz(&quot;
+      digraph
+      research_model {
+      graph [layout = neato, overlap = true, outputorder = edgesfirst]
+      A [pos=&#39;-2, 0!&#39;, label=&#39;긍정적\\n경제효과&#39;, shape=square, fixedsize = true, width = 1.5, height=0.2]
+      C [pos=&#39;-2, 4!&#39;, label=&#39;긍정적\\n사회효과&#39;, shape=square, fixedsize = true, width = 1.5, height=0.2]
+      D [pos=&#39;2, 2!&#39;, label=&#39;IR개발 인식\\nR-square = 0.244&#39;, shape=square, fixedsize = true, width = 2.0, height=0.2]
+      A-&gt;D [headlabel = &#39;0.343(8.849)@^{***}&#39;, labeldistance=12, labelangle=22,
+      headport = &#39;w&#39;, tailport = &#39;e&#39;]
+      C-&gt;D [headlabel = &#39;0.228(5.782)@^{***}&#39;, labeldistance=14, labelangle=-13,
+      headport = &#39;w&#39;, tailport = &#39;e&#39;]
+      } &quot;)</code></pre>
+<div id="htmlwidget-f1ff0f94e2f8411ff5d4" style="width:960px;height:576px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f1ff0f94e2f8411ff5d4">{"x":{"diagram":"\n      digraph\n      research_model {\n      graph [layout = neato, overlap = true, outputorder = edgesfirst]\n      A [pos=\"-2, 0!\", label=\"긍정적\\n경제효과\", shape=square, fixedsize = true, width = 1.5, height=0.2]\n      C [pos=\"-2, 4!\", label=\"긍정적\\n사회효과\", shape=square, fixedsize = true, width = 1.5, height=0.2]\n      D [pos=\"2, 2!\", label=\"IR개발 인식\\nR-square = 0.244\", shape=square, fixedsize = true, width = 2.0, height=0.2]\n      A->D [headlabel = <0.343(8.849)<FONT POINT-SIZE=\"8\"><SUP>***<\/SUP><\/FONT>>, labeldistance=12, labelangle=22,\n      headport = \"w\", tailport = \"e\"]\n      C->D [headlabel = <0.228(5.782)<FONT POINT-SIZE=\"8\"><SUP>***<\/SUP><\/FONT>>, labeldistance=14, labelangle=-13,\n      headport = \"w\", tailport = \"e\"]\n      } ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
