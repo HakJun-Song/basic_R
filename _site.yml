@@ -4,3 +4,8 @@ navbar:
   left:
     - text: "Home"
       href: Rmarkdown_paper-0720-.html
+output_dir: "."
+output:
+  html_document:
+    theme: yeti
+    highlight: textmate

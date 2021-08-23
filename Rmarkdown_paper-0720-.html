@@ -352,9 +352,8 @@ div.tocify {
 <p><code>pacman</code>패키지를 이용하여 필요한 패키지 한번에 설치<br />
 <code>if (!require(pacman))~~</code>부분은 <code>pacman</code>패키지가 이미 설치되어 있으면 로드만 설치되어 있지 않다면 인스톨(설치)와 로드를 한번에 실행</p>
 <pre class="r"><code>if (!require(pacman)) {install.packages(&quot;pacman&quot;)
-  library(pacman)}</code></pre>
-<pre><code>## 필요한 패키지를 로딩중입니다: pacman</code></pre>
-<pre class="r"><code>pacman::p_load(&quot;readxl&quot;,&quot;summarytools&quot;,&quot;webr&quot;,&quot;ggplot2&quot;,&quot;curl&quot;,
+  library(pacman)}
+pacman::p_load(&quot;readxl&quot;,&quot;summarytools&quot;,&quot;webr&quot;,&quot;ggplot2&quot;,&quot;curl&quot;,
                &quot;sjmisc&quot;,&quot;car&quot;,&quot;lawstat&quot;,&quot;DiagrammeR&quot;,&quot;skimr&quot;,
                &quot;tidyr&quot;,&quot;dplyr&quot;,&quot;broom&quot;,&quot;tidyverse&quot;)</code></pre>
 </div>
@@ -873,26 +872,8 @@ cor.test(incheon0427$q10, incheon0427$q23)</code></pre>
 ## 0.3973799</code></pre>
 <pre class="r"><code>#### 상관관계 숫자표시
 if (!require(Hmisc)) {install.packages(&quot;Hmisc&quot;)
-  library(Hmisc)}</code></pre>
-<pre><code>## 필요한 패키지를 로딩중입니다: Hmisc</code></pre>
-<pre><code>## 필요한 패키지를 로딩중입니다: lattice</code></pre>
-<pre><code>## 필요한 패키지를 로딩중입니다: survival</code></pre>
-<pre><code>## 필요한 패키지를 로딩중입니다: Formula</code></pre>
-<pre><code>## 
-## 다음의 패키지를 부착합니다: &#39;Hmisc&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     src, summarize</code></pre>
-<pre><code>## The following object is masked from &#39;package:sjmisc&#39;:
-## 
-##     %nin%</code></pre>
-<pre><code>## The following objects are masked from &#39;package:summarytools&#39;:
-## 
-##     label, label&lt;-</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     format.pval, units</code></pre>
-<pre class="r"><code>res2 &lt;- rcorr(as.matrix(target_vars))
+  library(Hmisc)}
+res2 &lt;- rcorr(as.matrix(target_vars))
 print(res2$r, digits=3)</code></pre>
 <pre><code>##       q10   q11   q12
 ## q10 1.000 0.676 0.555
@@ -905,13 +886,8 @@ print(res2$r, digits=3)</code></pre>
 ## q12   0   0  NA</code></pre>
 <pre class="r"><code>#### 독립변수 kw1,kw2,kw3
 if (!require(stargazer)) {install.packages(&quot;stargazer&quot;)
-  library(stargazer)}</code></pre>
-<pre><code>## 필요한 패키지를 로딩중입니다: stargazer</code></pre>
-<pre><code>## 
-## Please cite as:</code></pre>
-<pre><code>##  Hlavac, Marek (2018). stargazer: Well-Formatted Regression and Summary Statistics Tables.</code></pre>
-<pre><code>##  R package version 5.2.2. https://CRAN.R-project.org/package=stargazer</code></pre>
-<pre class="r"><code>mod&lt;-lm(q48~q10+q23, data=incheon0427)
+  library(stargazer)}
+mod&lt;-lm(q48~q10+q23, data=incheon0427)
 summary(mod)</code></pre>
 <pre><code>## 
 ## Call:
@@ -968,8 +944,8 @@ summary(mod)</code></pre>
       C-&gt;D [headlabel = &#39;0.228(5.782)@^{***}&#39;, labeldistance=14, labelangle=-13,
       headport = &#39;w&#39;, tailport = &#39;e&#39;]
       } &quot;)</code></pre>
-<div id="htmlwidget-11e4af924fcbca7f6438" style="width:960px;height:576px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-11e4af924fcbca7f6438">{"x":{"diagram":"\n      digraph\n      research_model {\n      graph [layout = neato, overlap = true, outputorder = edgesfirst]\n      A [pos=\"-2, 0!\", label=\"긍정적\\n경제효과\", shape=square, fixedsize = true, width = 1.5, height=0.2]\n      C [pos=\"-2, 4!\", label=\"긍정적\\n사회효과\", shape=square, fixedsize = true, width = 1.5, height=0.2]\n      D [pos=\"2, 2!\", label=\"IR개발 인식\\nR-square = 0.244\", shape=square, fixedsize = true, width = 2.0, height=0.2]\n      A->D [headlabel = <0.343(8.849)<FONT POINT-SIZE=\"8\"><SUP>***<\/SUP><\/FONT>>, labeldistance=12, labelangle=22,\n      headport = \"w\", tailport = \"e\"]\n      C->D [headlabel = <0.228(5.782)<FONT POINT-SIZE=\"8\"><SUP>***<\/SUP><\/FONT>>, labeldistance=14, labelangle=-13,\n      headport = \"w\", tailport = \"e\"]\n      } ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2e68f994dbbed7b30a9f" style="width:960px;height:576px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2e68f994dbbed7b30a9f">{"x":{"diagram":"\n      digraph\n      research_model {\n      graph [layout = neato, overlap = true, outputorder = edgesfirst]\n      A [pos=\"-2, 0!\", label=\"긍정적\\n경제효과\", shape=square, fixedsize = true, width = 1.5, height=0.2]\n      C [pos=\"-2, 4!\", label=\"긍정적\\n사회효과\", shape=square, fixedsize = true, width = 1.5, height=0.2]\n      D [pos=\"2, 2!\", label=\"IR개발 인식\\nR-square = 0.244\", shape=square, fixedsize = true, width = 2.0, height=0.2]\n      A->D [headlabel = <0.343(8.849)<FONT POINT-SIZE=\"8\"><SUP>***<\/SUP><\/FONT>>, labeldistance=12, labelangle=22,\n      headport = \"w\", tailport = \"e\"]\n      C->D [headlabel = <0.228(5.782)<FONT POINT-SIZE=\"8\"><SUP>***<\/SUP><\/FONT>>, labeldistance=14, labelangle=-13,\n      headport = \"w\", tailport = \"e\"]\n      } ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
